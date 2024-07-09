@@ -3,6 +3,8 @@ testconfig
 RNFetchBlobTest/
 test/test-server/public/*
 !test/test-server/public/github.png
+.settings
+*.project
 
 # OSX
 #

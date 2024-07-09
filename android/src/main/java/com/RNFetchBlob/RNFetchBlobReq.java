@@ -14,7 +14,7 @@ import android.net.NetworkInfo;
 import android.net.NetworkCapabilities;
 import android.net.ConnectivityManager;
 import android.util.Base64;
-
+import com.RNFetchBlob.receiver.CompatReceviceHelp;
 import com.RNFetchBlob.Response.RNFetchBlobDefaultResp;
 import com.RNFetchBlob.Response.RNFetchBlobFileResp;
 import com.facebook.common.logging.FLog;
@@ -196,7 +196,10 @@ public class RNFetchBlobReq extends BroadcastReceiver implements Runnable {
                 DownloadManager dm = (DownloadManager) appCtx.getSystemService(Context.DOWNLOAD_SERVICE);
                 downloadManagerId = dm.enqueue(req);
                 androidDownloadManagerTaskTable.put(taskId, Long.valueOf(downloadManagerId));
-                appCtx.registerReceiver(this, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
+                IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+                CompatReceviceHelp.compatRegisterReceiver(appCtx,this,intentFilter,true);
+//               appCtx.registerReceiver(this, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
                 return;
             }
 
