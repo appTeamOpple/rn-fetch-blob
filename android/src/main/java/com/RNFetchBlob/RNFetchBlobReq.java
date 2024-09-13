@@ -198,7 +198,7 @@ public class RNFetchBlobReq extends BroadcastReceiver implements Runnable {
                 androidDownloadManagerTaskTable.put(taskId, Long.valueOf(downloadManagerId));
 
                 IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
-                CompatReceviceHelp.compatRegisterReceiver(appCtx,this,intentFilter,true);
+                CompatReceviceHelp.compatRegisterReceiver(appCtx,this,intentFilter,false);
 //               appCtx.registerReceiver(this, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
                 return;
             }
